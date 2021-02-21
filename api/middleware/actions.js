@@ -18,7 +18,19 @@ function checkActionsID(){
             })
     }
 }
+function checkActionData(){
+    return (req,res,next)=>{
+        console.log("error from the middle ware",req.notes)
+        if (!req.body.description||!req.body.notes){
+            return res.status(400).json({
+                message:"Missing description or notes"
+            })
+        }
+        next()
+    }
+}
 
 module.exports ={
-    checkActionsID
+    checkActionsID,
+    checkActionData
 }
